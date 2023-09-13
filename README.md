@@ -23,4 +23,6 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Note 
-v1 9/13 code generate by gpt,and don't forget PUSH ON MAIN =)
+v1 9/13 don't forget PUSH ON MAIN =)
+demo:
+<img width="1238" alt="截圖 2023-09-13 下午5 36 48" src="https://github.com/phi622968143/TODOLIST/assets/40814498/19045e4d-b2cf-4048-bd8b-dbc4af11ef25">
