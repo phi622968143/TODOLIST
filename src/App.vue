@@ -1,26 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>To-Do List</h1>
+    <input v-model="newTodo" @keyup.enter="addTodo" placeholder="Add a new task" />
+    <ul>
+      <li v-for="(todo, index) in todos" :key="index">
+        <input type="checkbox" v-model="todo.completed" @change="completeTodo(index)" />
+        {{ todo.text }}
+        <button @click="deleteTodo(index)">Delete</button>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      newTodo: '',
+    };
+  },
+  computed: {
+    todos() {
+      return this.$store.state.todos;
+    },
+  },
+  methods: {
+    addTodo() {
+      if (this.newTodo.trim() !== '') {
+        this.$store.dispatch('addTodoAction', { text: this.newTodo, completed: false });
+        this.newTodo = '';
+      }
+    },
+    completeTodo(index) {
+      this.$store.dispatch('completeTodoAction', index);
+    },
+    deleteTodo(index) {
+      this.$store.dispatch('deleteTodoAction', index);
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
